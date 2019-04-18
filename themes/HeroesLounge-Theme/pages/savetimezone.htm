@@ -1,0 +1,23 @@
+title = "Save Timezone"
+url = "/savetimezone"
+layout = ""
+is_hidden = 0
+
+[SaveTimezone]
+==
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Setting Timezone and Redirecting...</title>
+        <script type="text/javascript" src="{{ 'assets/js/jquery.js' | theme }}"></script>
+    </head>
+    <body>
+
+Saving timezone to session cookie...
+
+{% component 'SaveTimezone' %}
+
+        {% framework %}
+        {% scripts %}
+    </body>
+</html>

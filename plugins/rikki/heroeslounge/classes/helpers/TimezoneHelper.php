@@ -49,7 +49,7 @@ class TimezoneHelper
         return 'd M Y ' . self::getTimeFormatString();
     }
 
-    public static function setTimezone()
+    public static function setTimezone($redirectUrl = null)
     {
         if (isset($_POST[self::TIMEZONE_KEY])) {
             $timezoneName = $_POST[self::TIMEZONE_KEY];
@@ -60,7 +60,12 @@ class TimezoneHelper
             $timezoneName = self::defaultTimezone();
         }
         Session::put(self::TIMEZONE_KEY, $timezoneName);
-        return Redirect::refresh();
+
+        if ($redirectUrl) {
+            return Redirect::to($redirectUrl);
+        } else {
+            return Redirect::refresh();
+        }
     }
 
     public static function hasTimezone()

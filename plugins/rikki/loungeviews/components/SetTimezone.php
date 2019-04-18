@@ -11,18 +11,14 @@ class SetTimezone extends ComponentBase
     {
         return [
             'name'        => 'Set Timezone',
-            'description' => 'Has the functionality to set the session timezone from client side js'
+            'description' => 'Redirects if no timezone set yet'
         ];
     }
 
-    public $hasTimezone = false;
-
-    public function onRender() {
-        $this->hasTimezone = TimezoneHelper::hasTimezone();
-    }
-
-    public function onTimezoneDetection() {
-        return TimezoneHelper::setTimezone();
+    public function onRun() {
+        if (!TimezoneHelper::hasTimezone()) {
+            return Redirect::to('/savetimezone');
+        }
     }
 
     public function defineProperties()
